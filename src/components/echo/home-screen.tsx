@@ -4,7 +4,7 @@ import {
   PenLine,
   Languages,
   BookOpen,
-  Image,
+  ImageIcon,
   Video,
   GitCompareArrows,
   Sparkles,
@@ -14,6 +14,8 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { Mode } from "./mode-nav";
+import Image from "next/image";
+import logo from "@/app/logo.png";
 
 const actions: {
   id: Mode;
@@ -21,18 +23,18 @@ const actions: {
   label: string;
   description: string;
 }[] = [
-  { id: "write",     icon: PenLine,          label: "Write",     description: "Create or improve text"    },
-  { id: "translate", icon: Languages,        label: "Translate", description: "Translate to any language" },
-  { id: "read",      icon: BookOpen,         label: "Read",      description: "Summarize links & files"   },
-  { id: "image",     icon: Image,            label: "Image",     description: "Generate images with AI"   },
-  { id: "video",     icon: Video,            label: "Video",     description: "Create AI videos"          },
-  { id: "more",      icon: GitCompareArrows, label: "Compare",   description: "Compare AI responses"      },
-];
+    { id: "write", icon: PenLine, label: "Write", description: "Create or improve text" },
+    { id: "translate", icon: Languages, label: "Translate", description: "Translate to any language" },
+    { id: "read", icon: BookOpen, label: "Read", description: "Summarize links & files" },
+    { id: "image", icon: ImageIcon, label: "Image", description: "Generate images with AI" },
+    { id: "video", icon: Video, label: "Video", description: "Create AI videos" },
+    { id: "more", icon: GitCompareArrows, label: "Compare", description: "Compare AI responses" },
+  ];
 
 const suggestions = [
-  { icon: AlignLeft,  label: "Summarize this page"  },
-  { icon: Wand2,      label: "Explain this simply"  },
-  { icon: FileText,   label: "Fix my grammar"        },
+  { icon: AlignLeft, label: "Summarize this page" },
+  { icon: Wand2, label: "Explain this simply" },
+  { icon: FileText, label: "Fix my grammar" },
 ];
 
 interface HomeScreenProps {
@@ -43,10 +45,8 @@ interface HomeScreenProps {
 export function HomeScreen({ onSelectMode, onSuggestion }: HomeScreenProps) {
   return (
     <div className="flex flex-col flex-1 overflow-y-auto px-4 py-5 gap-5">
-      {/* Welcome */}
       <div>
         <div className="flex items-center gap-1.5 mb-1">
-          <Sparkles size={14} className="text-[#8A8C88]" strokeWidth={1.75} />
           <span className="text-[11px] text-[#8A8C88] font-medium">EchoGPT</span>
         </div>
         <h1 className="text-[22px] font-semibold text-[#18181B] leading-tight tracking-tight">

@@ -54,48 +54,18 @@ export function ChatComposer({
         className
       )}
     >
-      <textarea
-        ref={textareaRef}
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        onKeyDown={handleKeyDown}
-        onInput={handleInput}
-        placeholder={placeholder}
-        rows={2}
-        aria-label="Message input"
-        className={cn(
-          "w-full resize-none rounded-t-2xl px-4 pt-3 pb-2",
-          "text-[13px] text-[#18181B] placeholder:text-[#8A8C88]",
-          "bg-transparent outline-none border-none leading-relaxed",
-          "max-h-[120px]"
-        )}
-      />
+      <textarea ref={textareaRef} value={value} onChange={(e) => setValue(e.target.value)} onKeyDown={handleKeyDown} onInput={handleInput} placeholder={placeholder}
+        rows={2} aria-label="Message input" className={cn("w-full resize-none rounded-t-2xl px-4 pt-3 pb-2", "text-[13px] text-[#18181B] placeholder:text-[#8A8C88]", "bg-transparent outline-none border-none leading-relaxed", "max-h-[120px]")} />
       <div className="flex items-center justify-between px-3 pb-2.5 pt-1">
         <div className="flex items-center gap-0.5">
-          <button
-            aria-label="Attach file"
-            className="p-1.5 rounded-lg text-[#8A8C88] hover:text-[#18181B] hover:bg-[#EEEEEA] transition-colors"
-          >
+          <button aria-label="Attach file" className="p-1.5 rounded-lg text-[#8A8C88] hover:text-[#18181B] hover:bg-[#EEEEEA] transition-colors">
             <Paperclip size={14} strokeWidth={1.75} />
           </button>
-          <button
-            aria-label="Voice input"
-            className="p-1.5 rounded-lg text-[#8A8C88] hover:text-[#18181B] hover:bg-[#EEEEEA] transition-colors"
-          >
+          <button aria-label="Voice input" className="p-1.5 rounded-lg text-[#8A8C88] hover:text-[#18181B] hover:bg-[#EEEEEA] transition-colors">
             <Mic size={14} strokeWidth={1.75} />
           </button>
         </div>
-        <button
-          onClick={handleSend}
-          disabled={!hasContent}
-          aria-label="Send message"
-          className={cn(
-            "flex items-center justify-center w-7 h-7 rounded-lg transition-all",
-            hasContent
-              ? "bg-[#D7D7D0] hover:bg-[#C9C9C1] text-[#18181B]"
-              : "bg-[#EEEEEA] text-[#8A8C88] cursor-not-allowed"
-          )}
-        >
+        <button onClick={handleSend} disabled={!hasContent} aria-label="Send message" className={cn("flex items-center justify-center w-7 h-7 rounded-lg transition-all", hasContent ? "bg-[#D7D7D0] hover:bg-[#C9C9C1] text-[#18181B]" : "bg-[#EEEEEA] text-[#8A8C88] cursor-not-allowed")}>
           <ArrowUp size={14} strokeWidth={2} />
         </button>
       </div>

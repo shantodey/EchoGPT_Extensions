@@ -1,15 +1,6 @@
 "use client";
 
-import {
-  MessageSquare,
-  PenLine,
-  BookOpen,
-  Languages,
-  Image,
-  Video,
-  MoreHorizontal,
-  Home,
-} from "lucide-react";
+import { MessageSquare, PenLine, BookOpen, Languages, Image, Video, MoreHorizontal, Home} from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export type Mode =

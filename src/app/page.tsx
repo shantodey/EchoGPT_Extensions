@@ -39,26 +39,13 @@ export default function Home() {
 
   return (
     <div className="echo-shell">
-      {/* ── Main content column ── */}
       <div className="flex flex-col flex-1 min-w-0 h-full overflow-hidden bg-[#FAFAF7]">
-        {/* Unified header */}
         <ExtensionHeader title={MODE_TITLES[mode]} />
-
-        {/* Mode content — grows to fill remaining height */}
         <div key={mode} className="flex flex-col flex-1 overflow-hidden echo-mode-enter">
           {mode === "home" && (
             <>
-              <HomeScreen
-                onSelectMode={handleSelectMode}
-                onSuggestion={handleSuggestion}
-              />
-              <ChatComposer
-                onSend={(text) => {
-                  setChatInit(text);
-                  setMode("chat");
-                }}
-                placeholder="Ask anything..."
-              />
+              <HomeScreen onSelectMode={handleSelectMode} onSuggestion={handleSuggestion}/>
+              <ChatComposer onSend={(text) => {  setChatInit(text);  setMode("chat");}}placeholder="Ask anything..."/>
             </>
           )}
           {mode === "chat"      && <ChatScreen key={chatInit} />}
@@ -71,7 +58,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ── Right: vertical mode nav ── */}
       <ModeNav active={mode} onSelect={handleSelectMode} />
     </div>
   );
