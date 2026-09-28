@@ -37,46 +37,43 @@ export default function Home() {
     setMode(m);
   };
 
-  const isHome = mode === "home";
-
   return (
-    <div className="echo-shell mx-auto">
-      {/* Unified header */}
-      <ExtensionHeader
-        title={MODE_TITLES[mode]}
-        onBack={!isHome ? () => setMode("home") : undefined}
-      />
+    // echo-shell is flex-row: left sidebar nav + right content column
+    <div className="echo-shell">
+      {/* ── Left: vertical mode nav ── */}
+      <ModeNav active={mode} onSelect={handleSelectMode} />
 
-      {/* Mode navigation */}
-      {!isHome && <ModeNav active={mode} onSelect={handleSelectMode} />}
+      {/* ── Right: header + scrollable content ── */}
+      <div className="flex flex-col flex-1 min-w-0 h-full overflow-hidden bg-[#FAFAF7]">
+        {/* Unified header */}
+        <ExtensionHeader title={MODE_TITLES[mode]} />
 
-      {/* Mode content */}
-      <div key={mode} className="flex flex-col flex-1 overflow-hidden echo-mode-enter">
-        {mode === "home" && (
-          <>
-            <HomeScreen onSelectMode={handleSelectMode} onSuggestion={handleSuggestion} />
-            <ChatComposer
-              onSend={(text) => {
-                setChatInit(text);
-                setMode("chat");
-              }}
-              placeholder="Ask anything..."
-            />
-          </>
-        )}
-        {mode === "chat"      && <ChatScreen key={chatInit} />}
-        {mode === "write"     && <WriteScreen />}
-        {mode === "read"      && <ReadScreen />}
-        {mode === "translate" && <TranslateScreen />}
-        {mode === "image"     && <GenerationStudio type="image" />}
-        {mode === "video"     && <GenerationStudio type="video" />}
-        {mode === "more"      && <MoreScreen />}
+        {/* Mode content — grows to fill remaining height */}
+        <div key={mode} className="flex flex-col flex-1 overflow-hidden echo-mode-enter">
+          {mode === "home" && (
+            <>
+              <HomeScreen
+                onSelectMode={handleSelectMode}
+                onSuggestion={handleSuggestion}
+              />
+              <ChatComposer
+                onSend={(text) => {
+                  setChatInit(text);
+                  setMode("chat");
+                }}
+                placeholder="Ask anything..."
+              />
+            </>
+          )}
+          {mode === "chat"      && <ChatScreen key={chatInit} />}
+          {mode === "write"     && <WriteScreen />}
+          {mode === "read"      && <ReadScreen />}
+          {mode === "translate" && <TranslateScreen />}
+          {mode === "image"     && <GenerationStudio type="image" />}
+          {mode === "video"     && <GenerationStudio type="video" />}
+          {mode === "more"      && <MoreScreen />}
+        </div>
       </div>
-
-      {/* Home mode nav strip at bottom */}
-      {isHome && (
-        <ModeNav active={mode} onSelect={handleSelectMode} />
-      )}
     </div>
   );
 }

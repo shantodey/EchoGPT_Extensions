@@ -93,15 +93,19 @@
   }
 }
 
-/* Extension shell — fixed 400×600 popup dimensions */
+/* Extension shell — full-height sidebar, fixed width like a real browser extension */
 .echo-shell {
-  width: 400px;
-  height: 600px;
+  width: 360px;
+  height: 100vh;
   background: var(--echo-bg);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;  /* left nav + right content side by side */
   overflow: hidden;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-right: 1px solid var(--echo-border);
+  box-shadow: 2px 0 12px rgba(0,0,0,0.06);
 }
 
 /* Smooth transitions for mode switching */

@@ -8,6 +8,7 @@ import {
   Image,
   Video,
   MoreHorizontal,
+  Home,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -21,7 +22,8 @@ export type Mode =
   | "video"
   | "more";
 
-const primaryModes: { id: Mode; icon: React.ElementType; label: string }[] = [
+const navItems: { id: Mode; icon: React.ElementType; label: string }[] = [
+  { id: "home",      icon: Home,          label: "Home"      },
   { id: "chat",      icon: MessageSquare, label: "Chat"      },
   { id: "write",     icon: PenLine,       label: "Write"     },
   { id: "read",      icon: BookOpen,      label: "Read"      },
@@ -40,9 +42,9 @@ export function ModeNav({ active, onSelect }: ModeNavProps) {
   return (
     <nav
       aria-label="EchoGPT modes"
-      className="flex items-center justify-between px-2 py-1.5 border-b border-[#E3E3DD] bg-[#FFFFFF] shrink-0 overflow-x-auto"
+      className="flex flex-col items-center py-3 gap-0.5 w-14 shrink-0 border-r border-[#E3E3DD] bg-[#FFFFFF] overflow-y-auto"
     >
-      {primaryModes.map(({ id, icon: Icon, label }) => {
+      {navItems.map(({ id, icon: Icon, label }) => {
         const isActive = active === id;
         return (
           <button
@@ -50,15 +52,19 @@ export function ModeNav({ active, onSelect }: ModeNavProps) {
             onClick={() => onSelect(id)}
             aria-label={label}
             aria-pressed={isActive}
+            title={label}
             className={cn(
-              "flex flex-col items-center gap-0.5 px-2 py-1.5 rounded-lg transition-all min-w-[46px]",
+              "flex flex-col items-center gap-1 w-10 py-2 rounded-xl transition-all",
               "text-[#8A8C88] hover:text-[#18181B] hover:bg-[#EEEEEA]",
-              isActive && "text-[#18181B] bg-[#D7D7D0]"
+              isActive && "text-[#18181B] bg-[#D7D7D0] hover:bg-[#C9C9C1]"
             )}
           >
-            <Icon size={15} strokeWidth={isActive ? 2 : 1.75} />
-            <span className={cn("text-[10px] leading-none font-medium", isActive ? "text-[#18181B]" : "text-[#8A8C88]")}>
-              {label}
+            <Icon size={16} strokeWidth={isActive ? 2 : 1.75} />
+            <span className={cn(
+              "text-[9px] leading-none font-medium",
+              isActive ? "text-[#18181B]" : "text-[#8A8C88]"
+            )}>
+              {label === "Translate" ? "Transl." : label}
             </span>
           </button>
         );
