@@ -5,4 +5,5 @@ dist
 *.log
 run.md
 .agents
+out
 PROJECT_CONTEXT.md

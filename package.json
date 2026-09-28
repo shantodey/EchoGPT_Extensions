@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "build:ext": "next build",
+    "build": "next build && pnpm run package:extension",
+    "build:ext": "pnpm run build",
+    "package:extension": "node scripts/package-extension.mjs",
     "start": "next start",
     "lint": "eslint"
   },

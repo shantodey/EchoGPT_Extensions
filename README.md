@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# EchoGPT Chrome Extension
 
-## Getting Started
+EchoGPT is a Chrome side-panel extension UI built with Next.js and React. It includes Home, Chat, Write, Read, Translate, Image, Video, and More screens.
 
-First, run the development server:
+> **Status:** This is currently a UI prototype. AI responses, current-tab summarization, document analysis, and image/video generation are not connected to a backend. Some screens display placeholder results.
+
+## Install in Chrome
+
+1. Download `echogpt-extensions.zip` from the repository's **Releases** page.
+2. Extract the ZIP. The folder selected in Chrome must contain `manifest.json` at its root.
+3. Open `chrome://extensions` and enable **Developer mode**.
+4. Click **Load unpacked** and select the extracted folder containing `manifest.json`.
+5. Open EchoGPT from the Chrome toolbar. After downloading an updated build, click **Reload** on the extension card.
+
+The release ZIP should contain the built extension, not the source project. When creating the ZIP, archive the contents of `out/` so `manifest.json` is at the top level.
+
+## Build from Source
+
+Requirements: Node.js 20.9 or newer and pnpm 12.4.2.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install --frozen-lockfile
+pnpm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The extension build is generated in `out/`. To preview the UI during development:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Then open `http://localhost:3000`. Development mode does not reproduce all Chrome extension restrictions; test production builds in Chrome too.
 
-## Learn More
+## Screenshots
 
-To learn more about Next.js, take a look at the following resources:
+### Download and Setup
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Step 1 | Step 2 |
+| --- | --- |
+| ![Download step 1](docs/images/setup-1.png) | ![Download step 2](docs/images/setup-2.png) |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Step 3 | Step 4 |
+| --- | --- |
+| ![Chrome setup step 3](docs/images/setup-3.png) | ![Chrome setup step 4](docs/images/setup-4.png) |
 
-## Deploy on Vercel
+### Extension UI
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Home | Chat |
+| --- | --- |
+| ![Home screen](docs/images/ui-home.png) | ![Chat screen](docs/images/ui-chat.png) |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Read | Write |
+| --- | --- |
+| ![Read screen](docs/images/ui-read.png) | ![Write screen](docs/images/ui-write.png) |
+
+| Image | Video |
+| --- | --- |
+| ![Image screen](docs/images/ui-image.png) | ![Video screen](docs/images/ui-video.png) |
+
+| Translate | More |
+| --- | --- |
+| ![Translate screen](docs/images/ui-translate.png) | ![More screen](docs/images/ui-more.png) |
+
+## Share a Build
+
+Create a GitHub Release and attach a ZIP of the built extension. Examiners can download and load that package without installing Node.js or building the source code.
