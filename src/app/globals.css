@@ -1,26 +1,115 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-destructive: var(--destructive);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  /* EchoGPT brand tokens */
+  --color-echo-primary: var(--echo-primary);
+  --color-echo-primary-hover: var(--echo-primary-hover);
+  --color-echo-bg: var(--echo-bg);
+  --color-echo-surface: var(--echo-surface);
+  --color-echo-surface-2: var(--echo-surface-2);
+  --color-echo-surface-3: var(--echo-surface-3);
+  --color-echo-border: var(--echo-border);
+  --color-echo-border-2: var(--echo-border-2);
+  --color-echo-text: var(--echo-text);
+  --color-echo-text-2: var(--echo-text-2);
+  --color-echo-text-muted: var(--echo-text-muted);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 0.625rem;
+
+  /* EchoGPT brand tokens */
+  --echo-primary: #D7D7D0;
+  --echo-primary-hover: #C9C9C1;
+  --echo-bg: #FAFAF7;
+  --echo-surface: #FFFFFF;
+  --echo-surface-2: #F3F3EE;
+  --echo-surface-3: #EEEEEA;
+  --echo-border: #E3E3DD;
+  --echo-border-2: #D6D6CF;
+  --echo-text: #18181B;
+  --echo-text-2: #5F625F;
+  --echo-text-muted: #8A8C88;
+
+  /* Override shadcn defaults with EchoGPT warm neutrals */
+  --background: #FAFAF7;
+  --foreground: #18181B;
+  --card: #FFFFFF;
+  --card-foreground: #18181B;
+  --popover: #FFFFFF;
+  --popover-foreground: #18181B;
+  --primary: #D7D7D0;
+  --primary-foreground: #18181B;
+  --secondary: #F3F3EE;
+  --secondary-foreground: #18181B;
+  --muted: #F3F3EE;
+  --muted-foreground: #8A8C88;
+  --accent: #EEEEEA;
+  --accent-foreground: #18181B;
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: #E3E3DD;
+  --input: #E3E3DD;
+  --ring: #D7D7D0;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    box-sizing: border-box;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Extension shell — fixed 400×600 popup dimensions */
+.echo-shell {
+  width: 400px;
+  height: 600px;
+  background: var(--echo-bg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Smooth transitions for mode switching */
+.echo-mode-enter {
+  animation: echo-fade-in 0.15s ease-out;
+}
+
+@keyframes echo-fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
