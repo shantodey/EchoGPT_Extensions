@@ -42,7 +42,7 @@ export function ModeNav({ active, onSelect }: ModeNavProps) {
   return (
     <nav
       aria-label="EchoGPT modes"
-      className="flex flex-col items-center py-3 gap-0.5 w-14 shrink-0 border-r border-[#E3E3DD] bg-[#FFFFFF] overflow-y-auto"
+      className="flex flex-col items-center py-3 gap-0.5 w-14 shrink-0 border-l border-[#E3E3DD] bg-[#FFFFFF] overflow-y-auto"
     >
       {navItems.map(({ id, icon: Icon, label }) => {
         const isActive = active === id;

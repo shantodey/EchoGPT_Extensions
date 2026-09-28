@@ -99,13 +99,13 @@
   height: 100vh;
   background: var(--echo-bg);
   display: flex;
-  flex-direction: row;  /* left nav + right content side by side */
+  flex-direction: row;  /* nav + content side by side */
   overflow: hidden;
   position: fixed;
   top: 0;
-  left: 0;
-  border-right: 1px solid var(--echo-border);
-  box-shadow: 2px 0 12px rgba(0,0,0,0.06);
+  right: 0;
+  border-left: 1px solid var(--echo-border);
+  box-shadow: -2px 0 12px rgba(0,0,0,0.06);
 }
 
 /* Smooth transitions for mode switching */

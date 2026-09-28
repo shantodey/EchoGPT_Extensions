@@ -71,17 +71,20 @@ export function MoreScreen({ onOpenTool }: MoreScreenProps) {
         ))}
       </div>
 
-      {/* Footer link */}
-      <div className="mt-auto pt-2">
+      {/* Footer info anchored to bottom */}
+      <div className="mt-auto pt-4 border-t border-[#E3E3DD] shrink-0 space-y-2">
         <a
           href="https://echogpt.live"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-1.5 text-[11px] text-[#8A8C88] hover:text-[#18181B] transition-colors"
+          className="flex items-center justify-between p-3 rounded-xl border border-[#E3E3DD] bg-[#FFFFFF] hover:border-[#D6D6CF] hover:bg-[#F3F3EE] transition-all text-[12px] text-[#18181B] font-medium"
         >
-          <ExternalLink size={11} strokeWidth={1.75} />
-          Open full EchoGPT
+          <span>Open full EchoGPT</span>
+          <ExternalLink size={13} strokeWidth={1.75} className="text-[#8A8C88]" />
         </a>
+        <p className="text-[10px] text-[#8A8C88] text-center">
+          EchoGPT Side Panel · v1.0.0
+        </p>
       </div>
     </div>
   );

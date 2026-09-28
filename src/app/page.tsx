@@ -38,12 +38,8 @@ export default function Home() {
   };
 
   return (
-    // echo-shell is flex-row: left sidebar nav + right content column
     <div className="echo-shell">
-      {/* ── Left: vertical mode nav ── */}
-      <ModeNav active={mode} onSelect={handleSelectMode} />
-
-      {/* ── Right: header + scrollable content ── */}
+      {/* ── Main content column ── */}
       <div className="flex flex-col flex-1 min-w-0 h-full overflow-hidden bg-[#FAFAF7]">
         {/* Unified header */}
         <ExtensionHeader title={MODE_TITLES[mode]} />
@@ -74,6 +70,9 @@ export default function Home() {
           {mode === "more"      && <MoreScreen />}
         </div>
       </div>
+
+      {/* ── Right: vertical mode nav ── */}
+      <ModeNav active={mode} onSelect={handleSelectMode} />
     </div>
   );
 }

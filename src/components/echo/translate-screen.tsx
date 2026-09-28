@@ -29,15 +29,15 @@ export function TranslateScreen() {
   };
 
   return (
-    <div className="flex flex-col flex-1 overflow-y-auto px-4 py-4 gap-4">
+    <div className="flex flex-col flex-1 overflow-hidden">
       {/* Language selector */}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 px-4 pt-4 pb-2 shrink-0">
         <select
           value={sourceLang}
           onChange={(e) => setSourceLang(e.target.value)}
           aria-label="Source language"
           id="translate-source-lang"
-          className="flex-1 rounded-xl border border-[#E3E3DD] bg-[#FFFFFF] px-3 py-2 text-[12px] text-[#18181B] outline-none focus:border-[#D6D6CF] transition-colors appearance-none cursor-pointer"
+          className="flex-1 rounded-xl border border-[#E3E3DD] bg-[#FFFFFF] px-3 py-2 text-[12px] font-medium text-[#18181B] outline-none focus:border-[#D6D6CF] transition-colors appearance-none cursor-pointer"
         >
           {LANGUAGES.map((l) => <option key={l} value={l}>{l}</option>)}
         </select>
@@ -62,7 +62,7 @@ export function TranslateScreen() {
           onChange={(e) => setTargetLang(e.target.value)}
           aria-label="Target language"
           id="translate-target-lang"
-          className="flex-1 rounded-xl border border-[#E3E3DD] bg-[#FFFFFF] px-3 py-2 text-[12px] text-[#18181B] outline-none focus:border-[#D6D6CF] transition-colors appearance-none cursor-pointer"
+          className="flex-1 rounded-xl border border-[#E3E3DD] bg-[#FFFFFF] px-3 py-2 text-[12px] font-medium text-[#18181B] outline-none focus:border-[#D6D6CF] transition-colors appearance-none cursor-pointer"
         >
           {LANGUAGES.filter((l) => l !== "Automatic").map((l) => (
             <option key={l} value={l}>{l}</option>
@@ -70,53 +70,57 @@ export function TranslateScreen() {
         </select>
       </div>
 
-      {/* Input */}
-      <textarea
-        value={inputText}
-        onChange={(e) => setInputText(e.target.value)}
-        placeholder="Paste or enter text to translate..."
-        rows={5}
-        id="translate-input"
-        aria-label="Text to translate"
-        className={cn(
-          "w-full resize-none rounded-xl border border-[#E3E3DD] bg-[#FFFFFF]",
-          "px-3 py-2.5 text-[13px] text-[#18181B] placeholder:text-[#8A8C88]",
-          "outline-none focus:border-[#D6D6CF] transition-colors leading-relaxed"
-        )}
-      />
-
-      {/* Bottom row */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-1.5 text-[#8A8C88]">
-          <Languages size={12} strokeWidth={1.75} />
-          <span className="text-[11px]">EchoGPT Translate</span>
+      {/* Middle: Two balanced cards taking all available height */}
+      <div className="flex-1 flex flex-col gap-3 px-4 py-2 min-h-0 overflow-y-auto">
+        {/* Source card */}
+        <div className="flex-1 flex flex-col min-h-[110px] rounded-2xl border border-[#E3E3DD] bg-[#FFFFFF] p-3 shadow-sm focus-within:border-[#D6D6CF] transition-all">
+          <label className="text-[10px] font-semibold text-[#8A8C88] uppercase tracking-widest mb-1">
+            {sourceLang}
+          </label>
+          <textarea
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
+            placeholder="Paste or enter text to translate..."
+            id="translate-input"
+            aria-label="Text to translate"
+            className="flex-1 w-full resize-none text-[13px] text-[#18181B] placeholder:text-[#8A8C88] bg-transparent outline-none border-none leading-relaxed"
+          />
         </div>
+
+        {/* Target card */}
+        <div className="flex-1 flex flex-col min-h-[110px] rounded-2xl border border-[#E3E3DD] bg-[#FFFFFF] p-3 shadow-sm">
+          <label className="text-[10px] font-semibold text-[#8A8C88] uppercase tracking-widest mb-1">
+            {targetLang}
+          </label>
+          {result ? (
+            <p className="flex-1 text-[13px] text-[#18181B] leading-relaxed whitespace-pre-wrap echo-mode-enter overflow-y-auto">
+              {result}
+            </p>
+          ) : (
+            <div className="flex-1 flex items-center justify-center text-center text-[#8A8C88]">
+              <p className="text-[12px] opacity-60">Translation will appear here</p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Bottom: Docked translate action button */}
+      <div className="px-4 pb-4 pt-1 shrink-0">
         <button
           onClick={handleTranslate}
           disabled={!inputText.trim()}
           id="translate-btn"
           className={cn(
-            "px-4 py-2 rounded-xl text-[12px] font-semibold transition-all",
+            "flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-[13px] font-semibold transition-all shadow-sm",
             inputText.trim()
               ? "bg-[#D7D7D0] hover:bg-[#C9C9C1] text-[#18181B]"
               : "bg-[#EEEEEA] text-[#8A8C88] cursor-not-allowed"
           )}
         >
+          <Languages size={15} strokeWidth={1.75} />
           Translate
         </button>
       </div>
-
-      {/* Result */}
-      {result && (
-        <div className="rounded-xl border border-[#E3E3DD] bg-[#FFFFFF] p-3 echo-mode-enter">
-          <p className="text-[11px] font-semibold text-[#8A8C88] uppercase tracking-widest mb-2">
-            {targetLang}
-          </p>
-          <p className="text-[13px] text-[#18181B] leading-relaxed whitespace-pre-wrap">
-            {result}
-          </p>
-        </div>
-      )}
     </div>
   );
 }
